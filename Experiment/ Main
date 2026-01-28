@@ -1,1 +1,19 @@
+n = int(input())
+arr = input().split()
 
+mp = {0: -1}     
+prefix_sum = 0
+max_len = 0
+
+for i in range(n):
+    if arr[i] == 'P':
+        prefix_sum += 1
+    else:  # 'A'
+        prefix_sum -= 1
+
+    if prefix_sum in mp:
+        max_len = max(max_len, i - mp[prefix_sum])
+    else:
+        mp[prefix_sum] = i
+
+print(max_len)
